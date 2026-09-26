@@ -1,8 +1,8 @@
 "use client";
-import React, { useId } from "react";
-import { useEffect, useState } from "react";
-import Particles from "@tsparticles/react";
-import type { Container, SingleOrMultiple, IOptions } from "@tsparticles/engine";
+
+import React, { useId, useState } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import type { Container, Engine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { cn } from "@/lib/utils";
 import { motion, useAnimation } from "motion/react";
@@ -11,12 +11,16 @@ type ParticlesProps = {
   id?: string;
   className?: string;
   background?: string;
-  particleSize?: number;
   minSize?: number;
   maxSize?: number;
   speed?: number;
   particleColor?: string;
   particleDensity?: number;
+};
+
+// This function initializes the engine. It is passed to the ParticlesProvider.
+const particlesInit = async (engine: Engine): Promise<void> => {
+  await loadSlim(engine);
 };
 
 export const SparklesCore = (props: ParticlesProps) => {
@@ -30,17 +34,9 @@ export const SparklesCore = (props: ParticlesProps) => {
     particleColor,
     particleDensity,
   } = props;
-  const [init, setInit] = useState(false);
-  
-  useEffect(() => {
-    const initParticles = async () => {
-      await loadSlim();
-      setInit(true);
-    };
-    initParticles();
-  }, []);
-  
+
   const controls = useAnimation();
+  const generatedId = useId();
 
   const particlesLoaded = async (container?: Container) => {
     if (container) {
@@ -53,11 +49,9 @@ export const SparklesCore = (props: ParticlesProps) => {
     }
   };
 
-  const generatedId = useId();
-  
   return (
     <motion.div animate={controls} className={cn("opacity-0", className)}>
-      {init && (
+      <ParticlesProvider init={particlesInit}>
         <Particles
           id={id || generatedId}
           className={cn("h-full w-full")}
@@ -144,7 +138,7 @@ export const SparklesCore = (props: ParticlesProps) => {
             detectRetina: true,
           }}
         />
-      )}
+      </ParticlesProvider>
     </motion.div>
   );
 };
