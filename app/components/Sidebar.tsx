@@ -85,7 +85,7 @@ export default function Sidebar() {
         <div className={s.mobileTopNavInner}>
           <div className={s.mobileAvatarContainer}>
             <div className={s.mobileAvatar}>
-              <Image src="/logo.png" alt="Fred Munyao" width={40} height={40} className={s.mobileAvatarImage} priority />
+              <Image src="/logo.jpg" alt="Fred Munyao" width={40} height={40} className={s.mobileAvatarImage} priority />
             </div>
             <div>
               <div className={s.mobileName}>Fred Munyao</div>
@@ -98,7 +98,7 @@ export default function Sidebar() {
       <aside className={s.desktopSidebar} aria-labelledby="desktop-sidebar">
         <div className={s.desktopAvatarContainer}>
           <div className={s.desktopAvatar}>
-            <Image src="/logo.png" alt="Fred Munyao" width={48} height={48} className={s.desktopAvatarImage} priority />
+            <Image src="/logo.jpg" alt="Fred Munyao" width={48} height={48} className={s.desktopAvatarImage} priority />
           </div>
           <div>
             <div className={s.desktopName}>Fred Munyao</div>
@@ -156,7 +156,7 @@ export default function Sidebar() {
             <div className={s.mobileHeaderInner}>
               <div className={s.mobileAvatarContainer}>
                 <div className={s.mobileAvatar}>
-                  <Image src="/logo.png" alt="Fred Munyao" width={40} height={40} className={s.mobileAvatarImage} priority />
+                  <Image src="/logo.jpg" alt="Fred Munyao" width={40} height={40} className={s.mobileAvatarImage} priority />
                 </div>
                 <div>
                   <div className={s.mobileName}>Fred Munyao</div>
